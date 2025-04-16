@@ -1,0 +1,23 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Portal1 : MonoBehaviour
+{
+    public GameObject portal;
+    public float distanceToTarget;
+    private Vector2 portalOut;
+
+    private void Start()
+    {
+        portalOut = new Vector2(portal.transform.position.x, portal.transform.position.y + 50f);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.GetComponent<playerScripts>() != null)
+        {
+            
+            collision.transform.position = Vector2.MoveTowards(portal.transform.position, portalOut, distanceToTarget);
+        }
+    }
+}
